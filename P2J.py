@@ -12,21 +12,21 @@ def png_to_jpeg(image_name,image_path):
 	
 	im = Image.open(image_rel_path)
 	rgb_im = im.convert('RGB')
-	rgb_im.save(os.path.join(image_path,".".join([image_name[:-4],'jpeg'])))
+	rgb_im.save(os.path.join(image_path,"".join([image_name[:-4],'_png_to_jpg','.jpeg'])))
 
-parser = argparse.ArgumentParser(description = 'Converts Png image to Jpeg')
-parser.add_argument('-im',
-						'--image_name',
-						type = str,
-						help = 'Input png image name')
-
-parser.add_argument('-p',
-						'--image_path',
-						type = str,
-						help = 'Input png image folder path')
-args = parser.parse_args()
 
 if __name__ == '__main__':
+	parser = argparse.ArgumentParser(description = 'Converts Png image to Jpeg')
+	parser.add_argument('-im',
+							'--image_name',
+							type = str,
+							help = 'Input png image name')
+
+	parser.add_argument('-p',
+							'--image_path',
+							type = str,
+							help = 'Input png image folder path')
+	args = parser.parse_args()
 	
 	png_to_jpeg(args.image_name,args.image_path)
 	
