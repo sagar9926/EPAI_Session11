@@ -5,7 +5,7 @@ import os
 
 print(f'loading image_cropper.py: __name__ = {__name__}')
 
-def image_crop(dir_path,crp_px,crp_p) :
+def image_crop(dir_path,crp_px = None,crp_p = None) :
 
 	"""
 	dir_path : Path of the folder in which the the images to be cropped are present
@@ -15,6 +15,15 @@ def image_crop(dir_path,crp_px,crp_p) :
 	all_files_in_dir = os.listdir(path = dir_path)
 	all_images_in_dir = [image  for image in all_files_in_dir if ('.jpg' in image.lower() ) or ('.png' in image.lower()) or ('.jpeg' in image.lower())]
 	images_not_cropped = []
+	directory = "Uncropped"
+	path = os.path.join(dir_path,directory)
+	
+	try: 
+		os.makedirs(path, exist_ok = True) 
+		print("Directory '%s' created successfully" % directory) 
+	except OSError as error: 
+		print("Directory '%s' can not be created" % directory) 
+	
 	for image_name in all_images_in_dir:
 		
 		image_rel_path = os.path.join(dir_path,image_name)
@@ -39,7 +48,9 @@ def image_crop(dir_path,crp_px,crp_p) :
 			right = (width + new_width)/2
 			bottom = (height + new_height)/2
 			# Save the list of images which couldn't be cropped due to size mismatches
-			if (left < 0) or (top < 0) or (right > width) or (bottom > height):
+			if (left < 0) or (top < 0) or (right > width) or (bottom > height):	
+				image_rel_path = path
+				im.save(os.path.join(image_rel_path,"".join(["uncropped_",image_name])))
 				images_not_cropped.append(image_name) 
 			else:
 				# Crop the center of the image
@@ -50,12 +61,11 @@ def image_crop(dir_path,crp_px,crp_p) :
 			
 		elif crp_px is None :
 		
-		
 			"""
 			crp_p : Image width and height after performing center crop (proportion)
 			"""
 			
-			new_width , new_height = crp_p[0]*width,crp_p[1]*height
+			new_width , new_height = crp_p*width,crp_p*height
 			"""
 			The top left coordinates correspond to (x, y) = (left, top), 
 			and the bottom right coordinates correspond to (x, y) = (right, bottom). 
@@ -68,7 +78,9 @@ def image_crop(dir_path,crp_px,crp_p) :
 			bottom = (height + new_height)/2
 			
 			# Save the list of images which couldn't be cropped due to size mismatches
-			if (left < 0) or (top < 0) or (right > width) or (bottom > height):
+			if (left < 0) or (top < 0) or (right > width) or (bottom > height):	
+				image_rel_path = path
+				im.save(os.path.join(image_rel_path,"".join(["uncropped_",image_name])))
 				images_not_cropped.append(image_name) 
 			else:
 				# Crop the center of the image
@@ -83,33 +95,33 @@ def image_crop(dir_path,crp_px,crp_p) :
 	print("List of images which didn't get cropped due to size mismatch :")
 	print(images_not_cropped)
 			
-parser = argparse.ArgumentParser(description = """
-											dir_path : Path of the folder in which the the images to be cropped are present
-											
-											Select one of the following to crop the image:
-											crp_px : Center square/rectangle crop by user-determined pixels (new_width , new_height)
-											crp_p : Centre square/rectangle crop by user-determined percentage 
-											""")
-parser.add_argument('-dir',
-						'--dir_path',
-						type = str,
-						help = 'Input images folder path')
-
-parser.add_argument('-crp_px',
-						'--new_width_height_dimensions_in_pixels',
-						type = float,
-						nargs= 2 ,
-						help = """First value of tuple correspond to the new width(in pixels) after performing center crop
-								Second value of tuple correspond to the new height(in pixels) after performing center crop""")
-
-parser.add_argument('-crp_p',
-						'--new_width_height_pixels_in_proportion',
-						type = float,
-						nargs='+',
-						help = """First value of tuple correspond to the new width(proportion) after performing center crop
-								Second value of tuple correspond to the new height(proportion) after performing center crop""")
-
-args = parser.parse_args()
 
 if __name__ == '__main__':
+	parser = argparse.ArgumentParser(description = """
+												dir_path : Path of the folder in which the the images to be cropped are present
+												
+												Select one of the following to crop the image:
+												crp_px : Center square/rectangle crop by user-determined pixels (new_width , new_height)
+												crp_p : Centre square/rectangle crop by user-determined percentage 
+												""")
+	parser.add_argument('-dir',
+							'--dir_path',
+							type = str,
+							help = 'Input images folder path')
+
+	parser.add_argument('-crp_px',
+							'--new_width_height_dimensions_in_pixels',
+							type = float,
+							nargs= 2 ,
+							help = """First value of tuple correspond to the new width(in pixels) after performing center crop
+									Second value of tuple correspond to the new height(in pixels) after performing center crop""")
+
+	parser.add_argument('-crp_p',
+							'--new_width_height_pixels_in_proportion',
+							type = float,
+							help = """First value of tuple correspond to the new width(proportion) after performing center crop
+									Second value of tuple correspond to the new height(proportion) after performing center crop""")
+
+	args = parser.parse_args()
+
 	image_crop(args.dir_path,args.new_width_height_dimensions_in_pixels,args.new_width_height_pixels_in_proportion)
