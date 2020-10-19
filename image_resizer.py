@@ -5,7 +5,7 @@ import os
 
 print(f'loading image_resizer.py: __name__ = {__name__}')
 
-def image_resize(dir_path,res_p,res_w,res_h) :
+def image_resize(dir_path,res_p = None,res_w = None,res_h = None) :
 
 	"""
 	dir_path : Path of the folder in which the the images to be resized are present
@@ -56,33 +56,36 @@ def image_resize(dir_path,res_p,res_w,res_h) :
 		else :
 			print("Please Enter valid arguments !!")
 			
-parser = argparse.ArgumentParser(description = """
-											Select one of the following :
-											res_p : Resize by user determined percentage (proportional)
-											res_w : resize by user determined width (proportional) 
-											res_h : resize by user determined height (proportional) 	
-												""")
-parser.add_argument('-dir',
-						'--dir_path',
-						type = str,
-						help = 'Input images folder path')
-
-parser.add_argument('-res_p',
-						'--image_resize_proportion',
-						type = float,
-						help = 'Amount by which the image has to be resized')
-
-parser.add_argument('-res_w',
-						'--image_width_resize_proportion',
-						type = float,
-						help = 'Amount by which the image width has to be resized')
-parser.add_argument('-res_h',
-						'--image_height_resize_proportion',
-						type = float,
-						help = 'Amount by which the image height has to be resized')
-
-
-args = parser.parse_args()
 
 if __name__ == '__main__':
+	parser = argparse.ArgumentParser(description = """
+												dir_path : Path of the folder in which the the images to be resized are present
+												
+												Select one of the following to resize image :
+												res_p : Resize by user determined percentage (proportional)
+												res_w : resize by user determined width (proportional) 
+												res_h : resize by user determined height (proportional) 	
+													""")
+	parser.add_argument('-dir',
+							'--dir_path',
+							type = str,
+							help = 'Input images folder path')
+
+	parser.add_argument('-res_p',
+							'--image_resize_proportion',
+							type = float,
+							help = 'Amount by which the image has to be resized')
+
+	parser.add_argument('-res_w',
+							'--image_width_resize_proportion',
+							type = float,
+							help = 'Amount by which the image width has to be resized')
+	parser.add_argument('-res_h',
+							'--image_height_resize_proportion',
+							type = float,
+							help = 'Amount by which the image height has to be resized')
+
+
+	args = parser.parse_args()
+
 	image_resize(args.dir_path,args.image_resize_proportion,args.image_width_resize_proportion,args.image_height_resize_proportion)
