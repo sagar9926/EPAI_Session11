@@ -43,7 +43,7 @@ print("#########################################")
 print("Task 6. Center crop to 224x224 : ")
 print("#########################################")
 
-os.system(r'python image_cropper.py -dir ".\images" -crp_px 500 500')
+os.system(r'python image_cropper.py -dir ".\images" -crp_px 224 224')
 
 	
 parser = argparse.ArgumentParser(description = """
