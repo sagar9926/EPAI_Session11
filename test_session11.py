@@ -26,7 +26,7 @@ def test_readme_file_for_formatting():
 #Test 4
 def test_J2P():
 	#Running the command line argument to conver jpeg image to png
-    os.system(r'python J2P.py -im img1.jpg -p ".\images"')
+    os.system(r'python3 J2P.py -im img1.jpg -p ".\images"')
 	
 	#Checking wheather output png file got created or not 
     converted_to_png = os.listdir(r'.\Converted_to_png')
@@ -36,14 +36,14 @@ def test_J2P():
 def test_J2P_check_valid_directory() :
     with pytest.raises(ValueError):
         try : 
-            subprocess.run(r'python J2P.py -im img1.jpg -p "C:\Users\Fake_Directory\Desktop\Assignment11\images"',check = True)
+            subprocess.run(r'python3 J2P.py -im img1.jpg -p "C:\Users\Fake_Directory\Desktop\Assignment11\images"',check = True)
         except: 
             raise ValueError
 #Test 6
 def test_J2P_check_valid_jpg() :
     with pytest.raises(ValueError):
         try : 
-            subprocess.run(r'python J2P.py -im img1.jpg -p r"python J2P.py -im img1.abc -p ".\images"',check = True)
+            subprocess.run(r'python3 J2P.py -im img1.jpg -p r"python J2P.py -im img1.abc -p ".\images"',check = True)
         except: 
             raise ValueError
 
@@ -60,7 +60,7 @@ def test_P2J():
 def test_P2J_check_valid_directory() :
     with pytest.raises(ValueError):
         try : 
-            subprocess.run(r'python P2J.py -im img1.png -p "C:\Users\Fake_Directory\Desktop\Assignment11\images"',check = True)
+            subprocess.run(r'python3 P2J.py -im img1.png -p "C:\Users\Fake_Directory\Desktop\Assignment11\images"',check = True)
         except: 
             raise ValueError
 
@@ -68,37 +68,37 @@ def test_P2J_check_valid_directory() :
 def test_P2J_check_valid_jpg() :
     with pytest.raises(ValueError):
         try : 
-            subprocess.run(r'python P2J.py -im img1.abc -p ".\images"',check = True)
+            subprocess.run(r'python3 P2J.py -im img1.abc -p ".\images"',check = True)
         except: 
             raise ValueError
 
 #Test 10
 def test_image_resizer_directory_creation():
-	os.system(r'python image_resizer.py -dir ".\images" -res_p 0.01')
+	os.system(r'python3 image_resizer.py -dir ".\images" -res_p 0.01')
 	assert os.path.isdir(r'./Resized_images') ,"Resized images directory not found"
     
 		
 #Test 11
 def test_image_resizer_res_p():
-	os.system(r'python image_resizer.py -dir ".\images" -res_p 0.01')
+	os.system(r'python3 image_resizer.py -dir ".\images" -res_p 0.01')
 	assert os.path.isdir(r'./Resized_images') ,"Resized images directory not found"
 	assert len(os.listdir(r'./Resized_images')) != 0 , "Error!!. None of the images were resized"
 
 #Test 12
 def test_image_resizer_res_w():
-	os.system(r'python image_resizer.py -dir ".\images" -res_w 0.01')
+	os.system(r'python3 image_resizer.py -dir ".\images" -res_w 0.01')
 	assert os.path.isdir(r'./Resized_images') ,"Resized images directory not found"
 	assert len(os.listdir(r'./Resized_images')) != 0 , "Error!!. None of the images were resized"
 
 #Test 13
 def test_image_resizer_res_h():
-	os.system(r'python image_resizer.py -dir ".\images" -res_h 0.01')
+	os.system(r'python3 image_resizer.py -dir ".\images" -res_h 0.01')
 	assert os.path.isdir(r'./Resized_images') ,"Resized images directory not found"
 	assert len(os.listdir(r'./Resized_images')) != 0 , "Error!!. None of the images were resized"
 	
 #Test 14
 def test_image_resizer_res_w_res_h():
-	os.system(r'python image_resizer.py -dir ".\images" ,-res_w 0.2 , -res_h 0.01')
+	os.system(r'python3 image_resizer.py -dir ".\images" ,-res_w 0.2 , -res_h 0.01')
 	assert os.path.isdir(r'./Resized_images') ,"Resized images directory not found"
 	assert len(os.listdir(r'./Resized_images')) != 0 , "Error!!. None of the images were resized"
 
