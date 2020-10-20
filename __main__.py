@@ -95,5 +95,3 @@ if __name__ == "__main__":
 		image_crop(args.dir_path,args.new_width_height_dimensions_in_pixels,args.new_width_height_pixels_in_proportion)
 		print("Finished Cropping!")
 		
-	
-
