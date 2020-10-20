@@ -20,7 +20,7 @@ print("Task 2. Converting png images to jpg : ")
 print("#########################################")	
 	
 for img in os.listdir("./Converted_to_png"):
-    os.system(f'python P2J.py -im {img} -p ".\images"')
+    os.system(f'python P2J.py -im {img} -p "./Converted_to_png"')
     
 print("#########################################")
 print("Task 3. Resize to 80% : ")
