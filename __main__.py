@@ -6,6 +6,45 @@ print("######## Welcome to Python Image Processing APP ########")
 print("#########################################################")
 
 print("######## Running __main__.py ########")
+
+print("#########################################")
+print("Task 1. Converting jpeg images to png : ")
+print("#########################################")	
+	
+for img in os.listdir("./images"):
+    print(img)
+    os.system(f'python J2P.py -im {img} -p ".\images"')
+
+print("#########################################")
+print("Task 2. Converting png images to jpg : ")
+print("#########################################")	
+	
+for img in os.listdir("./Converted_to_jpg"):
+    os.system(f'python P2J.py -im {img} -p ".\images"')
+    
+print("#########################################")
+print("Task 3. Resize to 80% : ")
+print("#########################################")
+
+os.system(r'python image_resizer.py -dir ".\images" -res_p 0.8')
+	 
+print("#########################################")
+print("Task 4. Resize width to 50% : ")
+print("#########################################")
+
+os.system(r'python image_resizer.py -dir ".\images" -res_w 0.5')
+print("#########################################")
+print("Task 5. Resize height to 50% : ")
+print("#########################################")
+
+os.system(r'python image_resizer.py -dir ".\images" -res_h 0.5')
+
+print("#########################################")
+print("Task 6. Center crop to 224x224 : ")
+print("#########################################")
+
+os.system(r'python image_cropper.py -dir ".\images" -crp_px 500 500')
+
 	
 parser = argparse.ArgumentParser(description = """
 											dir_path : Path of the folder in which the the images to be cropped are present
