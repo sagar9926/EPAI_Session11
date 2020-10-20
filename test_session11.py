@@ -29,7 +29,7 @@ def test_J2P():
     os.system(r'python3 J2P.py -im img1.jpg -p ".\images"')
 	
 	#Checking wheather output png file got created or not 
-    converted_to_png = os.listdir(r'.\Converted_to_png')
+    converted_to_png = os.listdir(r'./Converted_to_png')
     assert 'img1_jpg_to_png.png' in converted_to_png , "There is some error with your jpeg to png conversion"
 
 #Test 5
@@ -53,7 +53,7 @@ def test_P2J():
 	#Running the command line argument to conver jpeg image to png
     os.system(r'python3 P2J.py -im img1.png -p ".\images"')
     #Checking wheather output png file got created or not 
-    converted_to_jpg = os.listdir(r'.\Converted_to_jpg')
+    converted_to_jpg = os.listdir(r'./Converted_to_jpg')
     assert 'img1_png_to_jpg.jpeg' in converted_to_jpg , "There is some error with your png to jpeg conversion"
 
 #Test 8
