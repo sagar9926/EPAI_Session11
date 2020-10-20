@@ -106,37 +106,37 @@ def test_image_resizer_res_w_res_h():
 def test_image_resizer_check_valid_directory() :
     with pytest.raises(ValueError):
         try : 
-            subprocess.run(r'python image_resizer.py -dir "C:\Users\Faked_Directory\Desktop\Assignment11\images" -res_p 0.01',check = True)
+            subprocess.run(r'python3 image_resizer.py -dir "C:\Users\Faked_Directory\Desktop\Assignment11\images" -res_p 0.01',check = True)
         except: 
             raise ValueError
 #Test 16
 def test_image_cropper_check_valid_directory() :
     with pytest.raises(ValueError):
         try : 
-            subprocess.run(r'python image_cropper.py -dir "C:\Users\Faked_Directory\Assignment11\images" -crp_px 100 200',check = True)
+            subprocess.run(r'python3 image_cropper.py -dir "C:\Users\Faked_Directory\Assignment11\images" -crp_px 100 200',check = True)
         except: 
             raise ValueError
 
 
 #Test 17 
 def test_image_cropper_directory_creation_cropped():
-	os.system(r'python image_cropper.py -dir ".\images" -crp_px 100 200')
+	os.system(r'python3 image_cropper.py -dir ".\images" -crp_px 100 200')
 	assert os.path.isdir(r'./Cropped') ,"Cropped images directory not found"
 	
 #Test 18
 def test_image_cropper_directory_creation_uncropped():
-	os.system(r'python image_cropper.py -dir ".\images" -crp_px 100 200')
+	os.system(r'python3 image_cropper.py -dir ".\images" -crp_px 100 200')
 	assert os.path.isdir(r'./Uncropped') ,"Uncropped images directory not found"
 
 	
 #Test 19 
 def test_image_cropper_crp_p():
-	os.system(r'python image_cropper.py -dir ".\images" -crp_p 0.5')
+	os.system(r'python3 image_cropper.py -dir ".\images" -crp_p 0.5')
 	len(os.listdir(r'./Cropped')) + len(os.listdir(r'./Uncropped')) == len(os.listdir(r'./images')),"Images are not cropped properly"
 
 #Test 20
 def test_image_cropper_crp_px():
-	os.system(r'python image_cropper.py -dir ".\images" -crp_px 100 200')
+	os.system(r'python3 image_cropper.py -dir ".\images" -crp_px 100 200')
 	len(os.listdir(r'./Cropped')) + len(os.listdir(r'./Uncropped')) == len(os.listdir(r'./images')),"Images are not cropped properly"
 
             
