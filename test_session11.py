@@ -26,7 +26,7 @@ def test_readme_file_for_formatting():
 #Test 4
 def test_J2P():
 	#Running the command line argument to conver jpeg image to png
-    os.system(r'python3 J2P.py -im img1.jpg -p ".\images"')
+    os.system(r'python J2P.py -im img1.jpg -p ".\images"')
 	
 	#Checking wheather output png file got created or not 
     converted_to_png = os.listdir(r'./Converted_to_png')
