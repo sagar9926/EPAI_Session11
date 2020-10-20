@@ -5,6 +5,7 @@ import os
 import inspect
 import re
 import math
+import subprocess
 
 # Test 1
 def test_readme_exists():
@@ -25,99 +26,117 @@ def test_readme_file_for_formatting():
 #Test 4
 def test_J2P():
 	#Running the command line argument to conver jpeg image to png
-    os.system(r'python J2P.py -im dog1.jpg -p "C:\Users\Sagar.Agrawal.MU-SIGMA\Desktop\Assignment11\images"')
+    os.system(r'python J2P.py -im img1.jpg -p ".\images"')
 	
 	#Checking wheather output png file got created or not 
-	converted_to_png = os.listdir(r'C:\Users\Sagar.Agrawal.MU-SIGMA\Desktop\Assignment11\Converted_to_png')
-	assert 'dog1_jpg_to_png.png' in converted_to_png , "There is some error with your jpeg to png conversion"
+    converted_to_png = os.listdir(r'.\Converted_to_png')
+    assert 'img1_jpg_to_png.png' in converted_to_png , "There is some error with your jpeg to png conversion"
 
 #Test 5
-def test_J2P_check_valid_directory :
-	with pytest.raises(ValueError):
-		assert os.system(r'python J2P.py -im dog1.jpg -p "C:\Users\Fake_Directory\Desktop\Assignment11\images"')
+def test_J2P_check_valid_directory() :
+    with pytest.raises(ValueError):
+        try : 
+            subprocess.run(r'python J2P.py -im img1.jpg -p "C:\Users\Fake_Directory\Desktop\Assignment11\images"',check = True)
+        except: 
+            raise ValueError
 #Test 6
-def test_J2P_check_valid_jpg :
-	with pytest.raises(ValueError):
-		assert os.system(r'python J2P.py -im dog1.abc -p "C:\Users\Sagar.Agrawal.MU-SIGMA\Desktop\Assignment11\images"')
+def test_J2P_check_valid_jpg() :
+    with pytest.raises(ValueError):
+        try : 
+            subprocess.run(r'python J2P.py -im img1.jpg -p r"python J2P.py -im img1.abc -p ".\images"',check = True)
+        except: 
+            raise ValueError
+
 
 #Test 7
 def test_P2J():
 	#Running the command line argument to conver jpeg image to png
-    os.system(r'python P2J.py -im dog1.png -p "C:\Users\Sagar.Agrawal.MU-SIGMA\Desktop\Assignment11\images"')
-	
-	#Checking wheather output png file got created or not 
-	converted_to_png = os.listdir(r'C:\Users\Sagar.Agrawal.MU-SIGMA\Desktop\Assignment11\Converted_to_png')
-	assert 'dog1_png_to_jpg.jpg' in converted_to_png , "There is some error with your png to jpeg conversion"
+    os.system(r'python P2J.py -im img1.png -p ".\images"')
+    #Checking wheather output png file got created or not 
+    converted_to_jpg = os.listdir(r'.\Converted_to_jpg')
+    assert 'img1_png_to_jpg.jpeg' in converted_to_jpg , "There is some error with your png to jpeg conversion"
 
 #Test 8
-def test_P2J_check_valid_directory :
-	with pytest.raises(ValueError):
-		assert os.system(r'python P2J.py -im dog1.png -p "C:\Users\Fake_Directory\Desktop\Assignment11\images"')
+def test_P2J_check_valid_directory() :
+    with pytest.raises(ValueError):
+        try : 
+            subprocess.run(r'python P2J.py -im img1.png -p "C:\Users\Fake_Directory\Desktop\Assignment11\images"',check = True)
+        except: 
+            raise ValueError
+
 #Test 9
-def test_P2J_check_valid_jpg :
-	with pytest.raises(ValueError):
-		assert os.system(r'python P2J.py -im dog1.abc -p "C:\Users\Sagar.Agrawal.MU-SIGMA\Desktop\Assignment11\images"')
+def test_P2J_check_valid_jpg() :
+    with pytest.raises(ValueError):
+        try : 
+            subprocess.run(r'python P2J.py -im img1.abc -p ".\images"',check = True)
+        except: 
+            raise ValueError
 
 #Test 10
 def test_image_resizer_directory_creation():
-	os.system(r'python image_resizer.py -dir "C:\Users\Sagar.Agrawal.MU-SIGMA\Desktop\Assignment11\images" -res_p 0.01')
+	os.system(r'python image_resizer.py -dir ".\images" -res_p 0.01')
 	assert os.path.isdir(r'./Resized_images') ,"Resized images directory not found"
+    
 		
 #Test 11
 def test_image_resizer_res_p():
-	os.system(r'python image_resizer.py -dir "C:\Users\Sagar.Agrawal.MU-SIGMA\Desktop\Assignment11\images" -res_p 0.01')
+	os.system(r'python image_resizer.py -dir ".\images" -res_p 0.01')
 	assert os.path.isdir(r'./Resized_images') ,"Resized images directory not found"
-	assert len(os.listdir(r'./Resized_images')) == 0 , "Error!!. None of the images were resized"
+	assert len(os.listdir(r'./Resized_images')) != 0 , "Error!!. None of the images were resized"
 
 #Test 12
 def test_image_resizer_res_w():
-	os.system(r'python image_resizer.py -dir "C:\Users\Sagar.Agrawal.MU-SIGMA\Desktop\Assignment11\images" -res_w 0.01')
+	os.system(r'python image_resizer.py -dir ".\images" -res_w 0.01')
 	assert os.path.isdir(r'./Resized_images') ,"Resized images directory not found"
-	assert len(os.listdir(r'./Resized_images')) == 0 , "Error!!. None of the images were resized"
+	assert len(os.listdir(r'./Resized_images')) != 0 , "Error!!. None of the images were resized"
 
 #Test 13
 def test_image_resizer_res_h():
-	os.system(r'python image_resizer.py -dir "C:\Users\Sagar.Agrawal.MU-SIGMA\Desktop\Assignment11\images" -res_h 0.01')
+	os.system(r'python image_resizer.py -dir ".\images" -res_h 0.01')
 	assert os.path.isdir(r'./Resized_images') ,"Resized images directory not found"
-	assert len(os.listdir(r'./Resized_images')) == 0 , "Error!!. None of the images were resized"
+	assert len(os.listdir(r'./Resized_images')) != 0 , "Error!!. None of the images were resized"
 	
 #Test 14
 def test_image_resizer_res_w_res_h():
-	os.system(r'python image_resizer.py -dir "C:\Users\Sagar.Agrawal.MU-SIGMA\Desktop\Assignment11\images" ,-res_w 0.2 , -res_h 0.01')
+	os.system(r'python image_resizer.py -dir ".\images" ,-res_w 0.2 , -res_h 0.01')
 	assert os.path.isdir(r'./Resized_images') ,"Resized images directory not found"
-	assert len(os.listdir(r'./Resized_images')) == 0 , "Error!!. None of the images were resized"
+	assert len(os.listdir(r'./Resized_images')) != 0 , "Error!!. None of the images were resized"
 
 #Test 15
-def test_image_resizer_check_valid_directory :
-	with pytest.raises(ValueError):
-		assert os.system(r'python image_resizer.py -dir "C:\Users\Faked_Directory\Desktop\Assignment11\images" -res_p 0.01')
+def test_image_resizer_check_valid_directory() :
+    with pytest.raises(ValueError):
+        try : 
+            subprocess.run(r'python image_resizer.py -dir "C:\Users\Faked_Directory\Desktop\Assignment11\images" -res_p 0.01',check = True)
+        except: 
+            raise ValueError
 #Test 16
-def test_image_cropper_check_valid_directory :
-	with pytest.raises(ValueError):
-		assert os.system(r'python image_cropper.py -dir "C:\Users\Faked_Directory\Assignment11\images" -crp_px 100 200')
+def test_image_cropper_check_valid_directory() :
+    with pytest.raises(ValueError):
+        try : 
+            subprocess.run(r'python image_cropper.py -dir "C:\Users\Faked_Directory\Assignment11\images" -crp_px 100 200',check = True)
+        except: 
+            raise ValueError
+
 
 #Test 17 
-def test_image_cropper_directory_creation():
-	os.system(r'python image_cropper.py -dir "C:\Users\Sagar.Agrawal.MU-SIGMA\Desktop\Assignment11\images" -crp_px 100 200')
+def test_image_cropper_directory_creation_cropped():
+	os.system(r'python image_cropper.py -dir ".\images" -crp_px 100 200')
 	assert os.path.isdir(r'./Cropped') ,"Cropped images directory not found"
-	assert os.path.isdir(r'./Uncropped') ,"Uncropped images directory not found"
 	
-#Test 18 
-def test_image_cropper_crp_px_cropped():
-	os.system(r'python image_cropper.py -dir "C:\Users\Sagar.Agrawal.MU-SIGMA\Desktop\Assignment11\images" -crp_px 100 200')
-	assert os.path.isdir(r'./Cropped') ,"Cropped images directory not found"
+#Test 18
+def test_image_cropper_directory_creation_uncropped():
+	os.system(r'python image_cropper.py -dir ".\images" -crp_px 100 200')
+	assert os.path.isdir(r'./Uncropped') ,"Uncropped images directory not found"
 
+	
 #Test 19 
-def test_image_cropper_crp_px_uncropped():
-	os.system(r'python image_cropper.py -dir "C:\Users\Sagar.Agrawal.MU-SIGMA\Desktop\Assignment11\images" -crp_px 100 200')
-	assert os.path.isdir(r'./Cropped') ,"Cropped images directory not found"
+def test_image_cropper_crp_p():
+	os.system(r'python image_cropper.py -dir ".\images" -crp_p 0.5')
+	len(os.listdir(r'./Cropped')) + len(os.listdir(r'./Uncropped')) == len(os.listdir(r'./images')),"Images are not cropped properly"
 
-#Test 20 
-def test_image_cropper_crp_px_cropped():
-	os.system(r'python image_cropper.py -dir "C:\Users\Sagar.Agrawal.MU-SIGMA\Desktop\Assignment11\images" -crp_px 100 200')
-	assert os.path.isdir(r'./Cropped') ,"Cropped images directory not found"
+#Test 20
+def test_image_cropper_crp_px():
+	os.system(r'python image_cropper.py -dir ".\images" -crp_px 100 200')
+	len(os.listdir(r'./Cropped')) + len(os.listdir(r'./Uncropped')) == len(os.listdir(r'./images')),"Images are not cropped properly"
 
-#Test 21 logic total images = cropped + uncropped
-def test_image_cropper_crp_px_uncropped():
-	os.system(r'python image_cropper.py -dir "C:\Users\Sagar.Agrawal.MU-SIGMA\Desktop\Assignment11\images" -crp_px 100 200')
-	assert os.path.isdir(r'./Cropped') ,"Cropped images directory not found"
+            
