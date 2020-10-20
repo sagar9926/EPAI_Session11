@@ -19,7 +19,7 @@ print("#########################################")
 print("Task 2. Converting png images to jpg : ")
 print("#########################################")	
 	
-for img in os.listdir("./Converted_to_jpg"):
+for img in os.listdir("./Converted_to_png"):
     os.system(f'python P2J.py -im {img} -p ".\images"')
     
 print("#########################################")
