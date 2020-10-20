@@ -5,6 +5,16 @@ import os
 
 print(f'loading image_resizer.py: __name__ = {__name__}')
 
+directory = "Resized_images"
+path = os.path.join('.',directory)
+
+try: 
+	os.makedirs(path, exist_ok = True) 
+	print("Directory '%s' created successfully" % directory) 
+except OSError as error: 
+	print("Directory '%s' can not be created" % directory) 
+
+
 def image_resize(dir_path,res_p = None,res_w = None,res_h = None) :
 
 	"""
@@ -14,8 +24,12 @@ def image_resize(dir_path,res_p = None,res_w = None,res_h = None) :
 	res_h : resize by user determined height (proportional) 
 	
 	"""
+	if not os.path.isdir(dir_path):
+		raise ValueError('Input path is not a Directory')
+
 	all_files_in_dir = os.listdir(path = dir_path)
 	all_images_in_dir = [image  for image in all_files_in_dir if ('.jpg' in image.lower() ) or ('.png' in image.lower()) or ('.jpeg' in image.lower())]
+	
 	
 	for image_name in all_images_in_dir:
 		
@@ -28,7 +42,7 @@ def image_resize(dir_path,res_p = None,res_w = None,res_h = None) :
 			resized_im = im.resize((round(im.size[0]*res_p), round(im.size[1]*res_p)))
 
 			#Save the cropped image
-			resized_im.save(os.path.join(dir_path,"".join(["resized_",image_name])))
+			resized_im.save(os.path.join(path,"".join(["resized_",image_name])))
 		
 		elif not (res_w is None) and not (res_h is None) :
 		
@@ -36,7 +50,7 @@ def image_resize(dir_path,res_p = None,res_w = None,res_h = None) :
 			resized_im = im.resize((round(im.size[0]*res_w), round(im.size[1]*res_h)))
 
 			#Save the cropped image
-			resized_im.save(os.path.join(dir_path,"".join(["resized_",image_name])))
+			resized_im.save(os.path.join(path,"".join(["resized_",image_name])))
 
 		elif not (res_w is None) and (res_h is None) :
 		
@@ -44,7 +58,7 @@ def image_resize(dir_path,res_p = None,res_w = None,res_h = None) :
 			resized_im = im.resize((round(im.size[0]*res_w), round(im.size[1]*1)))
 
 			#Save the cropped image
-			resized_im.save(os.path.join(dir_path,"".join(["resized_",image_name])))
+			resized_im.save(os.path.join(path,"".join(["resized_",image_name])))
 
 		elif (res_w is None) and not (res_h is None) :
 		
@@ -52,7 +66,7 @@ def image_resize(dir_path,res_p = None,res_w = None,res_h = None) :
 			resized_im = im.resize((round(im.size[0]*1), round(im.size[1]*res_h)))
 
 			#Save the cropped image
-			resized_im.save(os.path.join(dir_path,"".join(["resized_",image_name])))
+			resized_im.save(os.path.join(path,"".join(["resized_",image_name])))
 		else :
 			print("Please Enter valid arguments !!")
 			
