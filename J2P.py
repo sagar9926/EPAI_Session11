@@ -3,7 +3,7 @@ import argparse
 from PIL import Image
 import os
 
-print(f'loading J2P.py: __name__ = {__name__}')
+#print(f'loading J2P.py: __name__ = {__name__}')
 
 print("Creating a new directory to store Converted Png images :")
 directory = "Converted_to_png"
