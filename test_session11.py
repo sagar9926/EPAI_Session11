@@ -51,7 +51,7 @@ def test_J2P_check_valid_jpg() :
 #Test 7
 def test_P2J():
 	#Running the command line argument to conver jpeg image to png
-    os.system(r'python P2J.py -im img1.png -p ".\images"')
+    os.system(r'python3 P2J.py -im img1.png -p ".\images"')
     #Checking wheather output png file got created or not 
     converted_to_jpg = os.listdir(r'.\Converted_to_jpg')
     assert 'img1_png_to_jpg.jpeg' in converted_to_jpg , "There is some error with your png to jpeg conversion"
