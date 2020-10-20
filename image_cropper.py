@@ -4,6 +4,15 @@ from PIL import Image
 import os
 
 print(f'loading image_cropper.py: __name__ = {__name__}')
+cropped_directory = "Cropped"
+crop_path = os.path.join('.',cropped_directory)
+
+try: 
+	os.makedirs(crop_path, exist_ok = True) 
+	print("Directory '%s' created successfully" % cropped_directory) 
+except OSError as error: 
+	print("Directory '%s' can not be created" % cropped_directory) 
+
 
 def image_crop(dir_path,crp_px = None,crp_p = None) :
 
@@ -16,13 +25,16 @@ def image_crop(dir_path,crp_px = None,crp_p = None) :
 	all_images_in_dir = [image  for image in all_files_in_dir if ('.jpg' in image.lower() ) or ('.png' in image.lower()) or ('.jpeg' in image.lower())]
 	images_not_cropped = []
 	directory = "Uncropped"
-	path = os.path.join(dir_path,directory)
+	path = os.path.join(".",directory)
 	
 	try: 
 		os.makedirs(path, exist_ok = True) 
 		print("Directory '%s' created successfully" % directory) 
 	except OSError as error: 
 		print("Directory '%s' can not be created" % directory) 
+	if not os.path.isdir(dir_path):
+		raise ValueError('Input path is not a Directory')
+
 	
 	for image_name in all_images_in_dir:
 		
@@ -50,14 +62,14 @@ def image_crop(dir_path,crp_px = None,crp_p = None) :
 			# Save the list of images which couldn't be cropped due to size mismatches
 			if (left < 0) or (top < 0) or (right > width) or (bottom > height):	
 				image_rel_path = path
-				im.save(os.path.join(image_rel_path,"".join(["uncropped_",image_name])))
+				im.save(os.path.join(path,"".join(["uncropped_",image_name])))
 				images_not_cropped.append(image_name) 
 			else:
 				# Crop the center of the image
 				cropped_im = im.crop((left, top, right, bottom))
 				
 				#Save the cropped image
-				cropped_im.save(os.path.join(dir_path,"".join(["cropped_",image_name])))
+				cropped_im.save(os.path.join(crop_path,"".join(["cropped_",image_name])))
 			
 		elif crp_px is None :
 		
@@ -80,14 +92,14 @@ def image_crop(dir_path,crp_px = None,crp_p = None) :
 			# Save the list of images which couldn't be cropped due to size mismatches
 			if (left < 0) or (top < 0) or (right > width) or (bottom > height):	
 				image_rel_path = path
-				im.save(os.path.join(image_rel_path,"".join(["uncropped_",image_name])))
+				im.save(os.path.join(path,"".join(["uncropped_",image_name])))
 				images_not_cropped.append(image_name) 
 			else:
 				# Crop the center of the image
 				cropped_im = im.crop((left, top, right, bottom))
 				
 				#Save the cropped image
-				cropped_im.save(os.path.join(dir_path,"".join(["cropped_",image_name])))
+				cropped_im.save(os.path.join(crop_path,"".join(["cropped_",image_name])))
 
 		else :
 			print("Please Enter valid arguments !!")
