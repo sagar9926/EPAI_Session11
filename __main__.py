@@ -72,8 +72,6 @@ args = parser.parse_args()
 if __name__ == "__main__":	  
 
 	if args.Task == "j2p": 
-		print("#######################################S",args.image_name)
-		print("#######################################S",args.image_path)
 		from J2P import jpeg_to_png 
 		print("Converting Image from jpeg to png")
 		jpeg_to_png(args.image_name,args.image_path)
@@ -96,4 +94,6 @@ if __name__ == "__main__":
 		print("Cropping !!")
 		image_crop(args.dir_path,args.new_width_height_dimensions_in_pixels,args.new_width_height_pixels_in_proportion)
 		print("Finished Cropping!")
+		
+	
 
