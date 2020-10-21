@@ -46,7 +46,7 @@ To use this module run the following command in terminal :
 python P2J.py -im image1.png -p ./images
 ```
 
-### 3. image_cropper,py
+### 3. image_cropper.py
 
 #### Description :
 
