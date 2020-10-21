@@ -73,7 +73,7 @@ python image_cropper.py -dir ".\images" -crp_px 100 200
 python image_cropper.py -dir ".\images" -crp_p 0.5
 ```
 
-### 3. image_cropper.py
+### 3. image_resizer.py
 
 #### Description :
 
@@ -97,4 +97,20 @@ python3 image_resizer.py -dir ".\images" ,-res_w 0.2 , -res_h 0.01```
 ```
 ##### Crop by user provided percentage values :
 ```
-python image_resizer.py -dir ".images" -res_p 0.5```
+python image_resizer.py -dir ".images" -res_p 0.5
+```
+#### 4. image_processing_app :
+
+This is a basic image processing app that performs following operations
+
+* Convert image to png
+
+* Convert image to jpg
+
+* Resize image o 80%
+
+* Resize image to 500 width
+
+* Resize image to 500 height
+
+* Center crop image to 224x224
