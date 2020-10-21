@@ -2,13 +2,13 @@
 
 # EPAI : Session 11 - Modules
 
-## In this repository I have created following modules :
+## This repository have following Image processing  modules :
 
 ### 1). J2P.py
 
 #### Description : 
 
-This module takes j.peg image as input , along with the directory path of the image and converts it into image with extension .png. The image is stored in a new directory named __Converted_to_jpg__
+This module takes .jpeg image as input , along with the directory path of the image and converts it into image with extension .png. The image is stored in a new directory named __Converted_to_jpg__
 
 #### Arguments :
 Following are the input arguments for this module :
@@ -25,16 +25,25 @@ To use this module run the following command in terminal :
 python J2P.py -im image1.jpg -p ./images
 ```
 
-### Question 2.1 : Using list comprehension (and zip/lambda/etc if required) write an expression that add 2 iterables a and b such that a is even and b is odd
+### 1). P2J.py
 
+#### Description : 
+
+This module takes .png image as input , along with the directory path of the image and converts it into image with extension .jpeg. The image is stored in a new directory named __Converted_to_jpg__
+
+#### Arguments :
+Following are the input arguments for this module :
+
+-im / --image_name : Input jpeg image name
+
+-p / --image_path : Input jpeg image folder path
+
+
+#### Usage : 
+
+To use this module run the following command in terminal :
 ```
-#### Creating two lists of size 10 with random numbers
-iter1 = [random.randint(0 , 100) for x in range(10)]
-iter2 = [random.randint(0 , 100) for x in range(10)]
-
-#### adding 2 iterables a and b such that a is even and b is odd
-Result_2_1 = [a + b for a , b in zip(iter1,iter2) if (a%2 == 0) and (b%2 != 0)]
-
+python P2J.py -im image1.png -p ./images
 ```
 
 ### Question 2.2 : Using list comprehension (and zip/lambda/etc if required) write an expression that strips every vowel from a string provided (tsai>>t s)
