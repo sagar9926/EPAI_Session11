@@ -72,3 +72,29 @@ python image_cropper.py -dir ".\images" -crp_px 100 200
 ```
 python image_cropper.py -dir ".\images" -crp_p 0.5
 ```
+
+### 3. image_cropper.py
+
+#### Description :
+
+This module takes image as input (both .png/.jpg) and resizes the image based on the percentage values for height and width or the overall percentage amount provided by the user.
+
+#### Arguments :
+Following are the input arguments for this module :
+
+-dir / --dir_path : Path of the folder in which the the images to be cropped are present
+
+-res_p / --image_resize_proportion : Resize by user determined percentage (proportional)
+
+-res_w / --image_width_resize_proportion : Resize by user determined width (proportional) 
+
+-res_h / --image_height_resize_proportion : Resize by user determined height (proportional)
+#### Usage : 
+
+##### Resize by user provided height and width proportion :
+```
+python3 image_resizer.py -dir ".\images" ,-res_w 0.2 , -res_h 0.01```
+```
+##### Crop by user provided percentage values :
+```
+python image_resizer.py -dir ".images" -res_p 0.5```
