@@ -56,7 +56,9 @@ This module takes image as input (both .png/.jpg) and does a center crop on the 
 Following are the input arguments for this module :
 
 -dir / --dir_path : Path of the folder in which the the images to be cropped are present
+
 -crp_px / --new_width_height_dimensions_in_pixels : Center square/rectangle crop by user-determined pixels (new_width , new_height)
+
 -crp_p / --new_width_height_pixels_in_proportion : Centre square/rectangle crop by user-determined percentage 
 
 #### Usage : 
