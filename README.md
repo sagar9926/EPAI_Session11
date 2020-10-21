@@ -4,7 +4,7 @@
 
 ## This repository have following Image processing  modules :
 
-### 1). J2P.py
+### * J2P.py
 
 #### Description : 
 
@@ -25,7 +25,7 @@ To use this module run the following command in terminal :
 python J2P.py -im image1.jpg -p ./images
 ```
 
-### 1). P2J.py
+### * P2J.py
 
 #### Description : 
 
