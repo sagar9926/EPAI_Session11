@@ -1,18 +1,20 @@
 # Created By : Sagar Agrawal
 
-# EPAI : Session 7
+# EPAI : Session 11 - Modules
 
-### Question 1 : Write a function using only list filter lambda that can tell whether a number is a Fibonacci number or not. You can use a pre-calculated list/dict to store fab numbers till 10000 PTS:100
+## In this repository I have created following modules :
 
+### 1). J2P.py
+
+#### Description : 
+
+This module takes j.peg image as input , along with the directory path of the image and converts it into image with extension .png. The image is stored in a new directory named __Converted_to_jpg__
+
+#### Usage : 
+
+To use this module run the following command in terminal :
 ```
-#### Using lambda and reduce first create a function that to create Fibonacci series given number of series elements as inputs
-fib  = lambda n : reduce(lambda x , _ :  x + [x[-1] + x[-2]] ,range(n-2), [0 , 1])
-
-#### Create a list containing first 10000 elements of a fibonacci series 
-FIB_10000 = fib(10000)
-
-#### Testing whether a number is fibonacci series or not
-Fib_Tester = lambda x : bool(list(filter(None ,  list([x in FIB_10000]))))
+python J2P.py -im image1.jpg -p ./images
 
 ```
 
