@@ -10,12 +10,19 @@
 
 This module takes j.peg image as input , along with the directory path of the image and converts it into image with extension .png. The image is stored in a new directory named __Converted_to_jpg__
 
+#### Arguments :
+Following are the input arguments for this module :
+
+-im / --image_name : Input jpeg image name
+
+-p / --image_path : Input jpeg image folder path
+
+
 #### Usage : 
 
 To use this module run the following command in terminal :
 ```
 python J2P.py -im image1.jpg -p ./images
-
 ```
 
 ### Question 2.1 : Using list comprehension (and zip/lambda/etc if required) write an expression that add 2 iterables a and b such that a is even and b is odd
